@@ -95,17 +95,14 @@ class App extends Component {
 	};
 
 	render() {
-		const paraLength = this.state.inputStuff[0].paragraph.length;
-		let str = 'Text too short';
-		if (paraLength >= 5) {
-			str = 'Text long enough';
-		}
-
 		const splitPara = this.state.inputStuff[0].paragraph.split('');
-
 		const letters = splitPara.map((letter, index) => {
 			return (
-				<Char val={letter} clicked={() => this.deleteLetterHandler(index)} />
+				<Char
+					val={letter}
+					key={index}
+					clicked={() => this.deleteLetterHandler(index)}
+				/>
 			);
 		});
 
@@ -147,7 +144,7 @@ class App extends Component {
 					onChange={this.inputChangeEventHandler}
 					value={this.state.inputStuff[0].paragraph}
 				/>
-				<Validation length={paraLength} text={str} />
+				<Validation length={this.state.inputStuff[0].paragraph.length} />
 				{letters}
 			</div>
 		);
